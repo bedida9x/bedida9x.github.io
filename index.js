@@ -1,8 +1,9 @@
 const express = require('express')
 const app = express()
-
+var port = process.env.PORT || 8080;
 const http = require('http')
 const server = http.createServer(app)
+app.use(express.static(__dirname + "/public"));
 const {
     Server
 } = require('socket.io')
@@ -20,6 +21,6 @@ io.on('connection', (socket) => {
     })
 })
 
-server.listen(3000, () => {
+server.listen(port, () => {
     console.log('Listening on port 3000');
 })
